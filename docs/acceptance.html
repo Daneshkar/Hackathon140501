@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="مرجع فارسی شرکت‌کنندگان هکاتون دانشکار؛ سناریوی مدیریت دارایی دیجیتال، نقشه چهارده‌روزه، قرارداد API و معیارهای پذیرش"><meta name="theme-color" content="#101e29"><title>معیارهای پذیرش | هکاتون دانشکار</title><link rel="stylesheet" href="assets/style.css"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"></head><body><a class="skip" href="#main">رفتن به محتوای اصلی</a><header class="site-header"><div class="header-inner"><a class="brand" href="index.html" aria-label="دانشکار؛ صفحه اصلی"><span class="brand-icon">د</span> دانشکار <span class="edition">هکاتون ۱۴۰۵</span></a><nav aria-label="ناوبری اصلی"><a href="index.html" >نقشهٔ سفر</a><a href="scenario.html" >سناریو</a><a href="api.html" >API</a><a href="scoring.html" >ارزیابی</a><a href="resources.html" >منابع</a></nav></div></header><main id="main"><div class="doc-layout"><aside class="doc-sidebar" aria-label="کتابخانه راهنما"><a href="index.html#adventure">← بازگشت به نقشه</a><a href="scenario.html" >سناریوی کامل</a><a href="api.html" >قرارداد API</a><a href="architecture.html" >طراحی Backend</a><a href="acceptance.html" aria-current="page">معیارهای پذیرش</a><a href="scoring.html" >امتیازدهی</a><a href="teamwork.html" >همکاری تیمی</a><a href="submission.html" >تحویل نهایی</a><a href="resources.html" >منابع و پرسش‌ها</a><a href="api/openapi.json">OpenAPI JSON ↗</a></aside><article class="document"><h1>چک‌لیست پذیرش و سناریوی داوری</h1>
+<p>هر آزمون روی دیتابیس قابل reset و دو Workspace مستقل اجرا شود. شواهد شامل درخواست، status و پاسخ، موجودی پیش و پس و commit تحویل است. تست دستی پایه لازم است؛ خودکارسازی همان رفتارها امتیاز ویژه دارد. این فهرست، آزمون Backend شرکت‌کنندگان است و به معنی وجود Backend در پرتال نیست.</p>
+<h2>A01 — حساب کاربر</h2>
+<p>ثبت‌نام معتبر 201 و دقیقاً یک Workspace با Admin بسازد؛ Login با ایمیل و موبایل 200 بدهد؛ GET me با token معتبر موفق شود. ایمیل یا موبایل تکراری 409 و password کوتاه 400؛ بدون token و token منقضی 401. هیچ PasswordHash در پاسخ نباشد.</p>
+<h2>A02 — اعضا و نقش‌ها</h2>
+<p>Admin دعوت کند؛ هویت دارای ایمیل مطابق بپذیرد؛ عضویت Active شود. دعوت منقضی و تکرار پذیرش 409؛ ایمیل نامنطبق 403. Member در دعوت و تغییر نقش 403 بگیرد. تغییر نقش یا غیرفعال‌سازی آخرین مدیر فعال 409؛ غیرفعال‌سازی عضو فوراً دسترسی Workspace را قطع کند. تاریخچه قبلی حفظ شود.</p>
+<h2>A03 — بازار و Watchlist</h2>
+<p>جست‌وجوی btc، مرتب‌سازی قیمت، صفحه‌بندی، جزئیات و تاریخچه صعودی از دیتابیس کار کنند. observedAt موجود باشد. افزودن تکراری Watchlist فقط یک رکورد بسازد؛ حذف تکراری 204؛ کاربر دوم Watchlist اولی را نبیند.</p>
+<h2>A04 — سبد و عدد دقیق</h2>
+<p>Holding تازه صفر باشد و body نتواند quantity تعیین کند. موجودی 0.5 BTC با قیمت نمونه 60000، ارزش 30000 بدهد. سبد صفر allocation صفر؛ دارایی فاقد قیمت pricingComplete=false و totalValueUsd=null بدهد. جمع سبد با مقادیر decimal دقیق کنترل شود.</p>
+<h2>A05 — تراکنش و rollback</h2>
+<p>Deposit مقدار 1.5؛ Sell مقدار 0.4 با قیمت 60000؛ موجودی نهایی 1.1 و totalValueUsd برابر 24000. Withdrawal مقدار 2 با 409 و INSUFFICIENT_BALANCE رد شود؛ هم موجودی و هم تعداد تراکنش‌ها ثابت بماند. مقدار صفر و منفی 400؛ Buy بدون قیمت 400. Transfer خروجی موجودی را کم کند. تغییر قیمت بازار نباید قیمت تراکنش قدیمی را عوض کند. شکست ذخیره میان عملیات با rollback، رکورد ناقص باقی نگذارد.</p>
+<h2>A06 — تاریخچه و فیلتر</h2>
+<p>فیلتر مستقل و ترکیبی type و status و assetId و بازه UTC کار کند. pageSize بیش از ۱۰۰ و بازه وارونه 400؛ صفحه خارج از محدوده items خالی؛ ترتیب با زمان برابر پایدار باشد. جزئیات id ناموجود 404.</p>
+<h2>A07 — داشبورد</h2>
+<p>پس از Deposit و Sell، totalValue و allocation و recent-transactions همان Workspace به‌روز شوند. PnL24h برای موجودی فعلی 1 با قیمت فعلی 60000 و مرجع 59000 برابر 1000 باشد؛ واریز را سود بازار حساب نکند. نبود مرجع، null؛ Workspace تازه تاریخچه خالی؛ pendingCount پایه صفر مجاز است.</p>
+<h2>A08 — تنظیمات</h2>
+<p>ذخیره Light/Dark و fa/en و USD/TOMAN، ورود دوباره و بازیابی همان مقادیر. Enum نامعتبر 400. ورود دومرحله‌ای پیاده‌نشده نباید enabled=true اعلام شود.</p>
+<h2>A09 — جداسازی Workspace</h2>
+<p>کاربر A با JWT معتبر و id تراکنش B به 404 برسد. X-Workspace-Id مربوط به Workspace بدون عضویت 403؛ نبود هدر مسیر Workspace برابر 400. همین بررسی برای سبد، داشبورد، اعضا و mutation انجام شود؛ هیچ تغییری در B ایجاد نشود.</p>
+<h2>A10 — اجرای تازه و اتصال واقعی</h2>
+<p>داور طبق README از دیتابیس خالی build و migration و seed کند و Frontend را وصل کند. هر شش سناریوی بخش ۲۳ سناریوی اصلی اجرا شود. داده hardcoded رابط کاربری جای API را نگیرد. secrets در repository نباشند.</p>
+<h2>B01 — ویژه: رقابت و Idempotency</h2>
+<p>با موجودی 1، دو برداشت هم‌زمان 0.8 اجرا شوند؛ حداکثر یکی موفق و موجودی نهایی 0.2 باشد. یک کلید و payload یکسان با retry فقط یک Transaction و یک اثر مالی ایجاد کند؛ کلید یکسان و payload متفاوت 409. نتیجه را با دیتابیس واقعی اثبات کنید.</p>
+<h2>B02 — ویژه: وابستگی خارجی و معماری</h2>
+<p>Timeout و 429 سرویس بازار را شبیه‌سازی کنید؛ داده ذخیره‌شده و observedAt محفوظ باشند. تست‌های قوانین مالی را اجرا کنید؛ dependencyها و handlerهای CQRS را توضیح دهید. Docker و CI از نصب تازه موفق باشند. قابلیت امنیتی ویژه در آزمون واقعی قابل اثبات باشد.</p></article></div></main><footer><div><strong>دانشکار · از ایده تا محصول</strong><p>۱۴ روز برای تجربهٔ ساختن در یک تیم واقعی.</p></div><a href="https://github.com/Daneshkar/Hackathon140501">ریپوزیتوری و مشارکت ↗</a><span>سناریوی آموزشی · عملیات مالی شبیه‌سازی‌شده</span></footer></body></html>
