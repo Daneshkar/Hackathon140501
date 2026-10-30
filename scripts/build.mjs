@@ -33,3 +33,5 @@ for(const [id,title] of pages){
 await write('docs/api/openapi.json',JSON.stringify(contract(),null,2)+'\n');
 await write('docs/.nojekyll','');
 console.log('Built 9 RTL pages and OpenAPI contract.');
+
+await import('./kingdom.mjs');
