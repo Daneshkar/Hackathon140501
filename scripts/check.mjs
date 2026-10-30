@@ -11,7 +11,7 @@ for(const f of files.filter(f=>f.endsWith('.html'))){
   const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(ids.length,new Set(ids).size,`duplicate IDs ${f}`);
   for(const match of html.matchAll(/\b(?:href|src)="([^"]+)"/g)){
     const url=match[1];if(/^(https?:|mailto:|data:)/.test(url))continue;
-    const [file,fragment]=url.split('#');const target=path.resolve(root,file||f);assert(target.startsWith(root));assert((await stat(target)).isFile(),`broken link ${url}`);links++;
+    const [rawFile,fragment]=url.split('#');const file=rawFile.split('?')[0];const target=path.resolve(root,file||f);assert(target.startsWith(root));assert((await stat(target)).isFile(),`broken link ${url}`);links++;
     if(fragment){const targetHtml=file?await readFile(target,'utf8'):html;assert(targetHtml.includes(`id="${fragment}"`),`broken anchor ${url}`);}
   }
 }

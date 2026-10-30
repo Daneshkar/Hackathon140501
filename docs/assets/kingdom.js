@@ -1,7 +1,7 @@
 (() => {
   let opener;
   const dialog = document.querySelector('dialog');
-  const features = fetch('assets/features.json').then(r => { if (!r.ok) throw Error(); return r.json(); });
+  const features = fetch('assets/features.json?v=guides1').then(r => { if (!r.ok) throw Error(); return r.json(); });
   features.catch(() => {});
   function section(title, items, className = '') {
     const container = document.createElement('section');
