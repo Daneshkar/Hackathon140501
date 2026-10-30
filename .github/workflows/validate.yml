@@ -1,0 +1,20 @@
+name: Validate portal
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm run build
+      - run: npm run check
+      - run: npm test
+      - name: Ensure generated documentation is committed
+        run: git diff --exit-code -- docs
