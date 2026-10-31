@@ -1,9 +1,136 @@
 [
-  [{"nodeId":"2:285","title":"صفحهٔ ورود"},{"nodeId":"2:337","title":"صفحهٔ ثبت‌نام"}],
-  [{"nodeId":"18:392","title":"صفحهٔ اشخاص و اعضا"}],
-  [{"nodeId":"23:774","title":"صفحهٔ بازارها"}],
-  [{"nodeId":"2:587","title":"صفحهٔ دارایی‌ها"}],
-  [{"nodeId":"18:980","title":"صفحهٔ تراکنش‌ها"}],
-  [{"nodeId":"2:5","title":"صفحهٔ داشبورد"}],
-  [{"nodeId":"23:1186","title":"صفحهٔ تنظیمات"}]
+  [
+    {
+      "nodeId": "2:285",
+      "title": "ورود · تیره",
+      "image": "assets/designs/login-dark.webp",
+      "pdfPage": 1,
+      "width": 1800,
+      "height": 1280
+    },
+    {
+      "nodeId": "2:311",
+      "title": "ورود · روشن",
+      "image": "assets/designs/login-light.webp",
+      "pdfPage": 2,
+      "width": 1800,
+      "height": 1280
+    },
+    {
+      "nodeId": "2:337",
+      "title": "ثبت‌نام · تیره",
+      "image": "assets/designs/register-dark.webp",
+      "pdfPage": 3,
+      "width": 1800,
+      "height": 1280
+    }
+  ],
+  [
+    {
+      "nodeId": "18:392",
+      "title": "اشخاص · تیره",
+      "image": "assets/designs/members-dark.webp",
+      "pdfPage": 10,
+      "width": 1800,
+      "height": 1280
+    },
+    {
+      "nodeId": "18:488",
+      "title": "اشخاص · روشن",
+      "image": "assets/designs/members-light.webp",
+      "pdfPage": 11,
+      "width": 1800,
+      "height": 1280
+    }
+  ],
+  [
+    {
+      "nodeId": "23:774",
+      "title": "بازارها · تیره",
+      "image": "assets/designs/markets-dark.webp",
+      "pdfPage": 14,
+      "width": 1800,
+      "height": 1280
+    },
+    {
+      "nodeId": "23:877",
+      "title": "بازارها · روشن",
+      "image": "assets/designs/markets-light.webp",
+      "pdfPage": 15,
+      "width": 1800,
+      "height": 1280
+    }
+  ],
+  [
+    {
+      "nodeId": "2:587",
+      "title": "دارایی‌ها · تیره",
+      "image": "assets/designs/holdings-dark.webp",
+      "pdfPage": 7,
+      "width": 1800,
+      "height": 1280
+    },
+    {
+      "nodeId": "2:682",
+      "title": "دارایی‌ها · روشن",
+      "image": "assets/designs/holdings-light.webp",
+      "pdfPage": 6,
+      "width": 1800,
+      "height": 1280
+    }
+  ],
+  [
+    {
+      "nodeId": "18:980",
+      "title": "تراکنش‌ها · تیره",
+      "image": "assets/designs/transactions-dark.webp",
+      "pdfPage": 12,
+      "width": 1800,
+      "height": 1280
+    },
+    {
+      "nodeId": "18:1083",
+      "title": "تراکنش‌ها · روشن",
+      "image": "assets/designs/transactions-light.webp",
+      "pdfPage": 13,
+      "width": 1800,
+      "height": 1280
+    }
+  ],
+  [
+    {
+      "nodeId": "2:5",
+      "title": "داشبورد · تیره",
+      "image": "assets/designs/dashboard-dark.webp",
+      "pdfPage": 5,
+      "width": 1800,
+      "height": 1280
+    },
+    {
+      "nodeId": "2:145",
+      "title": "داشبورد · روشن",
+      "image": "assets/designs/dashboard-light.webp",
+      "pdfPage": 4,
+      "width": 1800,
+      "height": 1280
+    }
+  ],
+  [
+    {
+      "nodeId": "23:1186",
+      "title": "تنظیمات · تیره",
+      "image": "assets/designs/settings-dark.webp",
+      "pdfPage": 16,
+      "width": 1800,
+      "height": 1280
+    },
+    {
+      "nodeId": "23:1262",
+      "title": "تنظیمات · روشن",
+      "image": "assets/designs/settings-light.webp",
+      "pdfPage": 17,
+      "width": 1800,
+      "height": 1280
+    }
+  ]
 ]
