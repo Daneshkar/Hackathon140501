@@ -1,7 +1,7 @@
 (() => {
   let opener;
   const dialog = document.querySelector('dialog');
-  const features = fetch('assets/features.json?v=guides1').then(r => { if (!r.ok) throw Error(); return r.json(); });
+  const features = fetch('assets/features.json?v=guides2').then(r => { if (!r.ok) throw Error(); return r.json(); });
   features.catch(() => {});
   function section(title, items, className = '') {
     const container = document.createElement('section');
@@ -20,6 +20,17 @@
       document.querySelector('#feature-description').textContent = guide?.goal || feature[3];
       const body = document.querySelector('#feature-details'); body.replaceChildren();
       if (guide) {
+        if (guide.designs?.length) {
+          const reference = document.createElement('section');
+          const title = document.createElement('h3'); title.textContent = 'طراحی مرتبط در Figma'; reference.append(title);
+          for (const design of guide.designs) {
+            const link = document.createElement('a');
+            link.href = 'https://www.figma.com/design/FB8p3t10nYItsCZtys3tG5/Daneshkar-Hackaton?node-id=' + encodeURIComponent(design.nodeId);
+            link.target = '_blank'; link.rel = 'noopener noreferrer'; link.textContent = design.title + ' ↗';
+            link.style.display = 'block'; reference.append(link);
+          }
+          body.append(reference);
+        }
         body.append(section('چه چیزی پیاده‌سازی کنید؟', guide.build), section('قوانین مهم این بخش', guide.rules));
         const example = document.createElement('section'); example.className = 'guide-example';
         const heading = document.createElement('h3'); heading.textContent = 'یک مثال برای روشن‌شدن رفتار';
