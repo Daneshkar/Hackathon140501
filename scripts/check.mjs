@@ -22,4 +22,7 @@ const ids=new Set();let operations=0;
 for(const [p,methods] of Object.entries(api.paths))for(const [m,op] of Object.entries(methods)){assert(!ids.has(op.operationId));ids.add(op.operationId);operations++;if(op.security.length===0)assert(['/auth/register','/auth/login'].includes(p));for(const variable of p.matchAll(/\{([^}]+)\}/g))assert(op.parameters.some(x=>x.name===variable[1]&&x.in==='path'&&x.required));assert(op.responses['200']||op.responses['201']||op.responses['204']);}
 const roadmap=JSON.parse(await readFile(new URL('../content/roadmap.json',import.meta.url),'utf8'));assert.deepEqual(roadmap.map(d=>d.day),Array.from({length:14},(_,i)=>i+1));for(const d of roadmap)await stat(path.join(root,d.page));
 const scores=JSON.parse(await readFile(new URL('../content/scoring.json',import.meta.url),'utf8'));assert.equal(scores.base.reduce((s,r)=>s+r[1],0),100);assert.equal(scores.bonus.reduce((s,r)=>s+r[1],0),30);
+const references=JSON.parse(await readFile(new URL('../content/design-references.json',import.meta.url),'utf8'));
+assert.equal(references.length,7);
+for(const group of references){assert(group.length>0);for(const design of group){assert(design.image.startsWith('assets/designs/'));assert((await stat(path.join(root,design.image))).size>0);assert(design.width>0&&design.height>0);}}
 console.log(`PASS: 9 RTL pages; ${links} local links; ${operations} API operations; 14 days; 100+30 points.`);
