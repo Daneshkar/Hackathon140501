@@ -2,14 +2,8 @@
 
 ## مسیر مطالعه
 
-ابتدا سناریو و قرارداد API را بخوانید؛ سپس به ترتیب احراز هویت، EF Core، transaction و authorization را مطالعه کنید. منابع رسمی زیر برای کار عملی مناسب‌اند؛ لازم نیست پیش از ساخت MVP تمام معماری‌های پیشرفته را یاد بگیرید.
+ابتدا سناریو و قرارداد API را بخوانید؛ سپس به ترتیب احراز هویت، دسترسی به داده، تراکنش پایگاه داده و کنترل دسترسی را مطالعه کنید. منابع رسمی زیر برای کار عملی مناسب‌اند؛ لازم نیست پیش از ساخت MVP تمام معماری‌های پیشرفته را یاد بگیرید.
 
-- [آموزش Web API در ASP.NET Core](https://learn.microsoft.com/aspnet/core/tutorials/first-web-api)
-- [مستندات Entity Framework Core](https://learn.microsoft.com/ef/core/)
-- [Transaction در EF Core](https://learn.microsoft.com/ef/core/saving/transactions)
-- [مدیریت تعارض هم‌زمانی](https://learn.microsoft.com/ef/core/saving/concurrency)
-- [Authorization در ASP.NET Core](https://learn.microsoft.com/aspnet/core/security/authorization/introduction)
-- [تست یکپارچه ASP.NET Core](https://learn.microsoft.com/aspnet/core/test/integration-tests)
 - [مشخصات OpenAPI](https://spec.openapis.org/oas/v3.1.0.html)
 - [انتشار GitHub Pages با workflow](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)
 

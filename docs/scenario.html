@@ -3,7 +3,7 @@
 <p><strong>عنوان پروژه:</strong> Daneshkar Digital Asset Management Platform</p>
 <p><strong>مدت زمان:</strong> ۱۴ روز</p>
 <p><strong>سطح شرکت‌کنندگان:</strong> Junior Backend Developers</p>
-<p><strong>فناوری پیشنهادی:</strong> C# / ASP.NET Core Web API</p>
+<p><strong>انتخاب فناوری:</strong> زبان و فریم‌ورک Backend با انتخاب تیم؛ معیار ارزیابی، رفتار محصول و قرارداد API است.</p>
 <p><strong>امتیاز پایه:</strong> ۱۰۰ امتیاز</p>
 <p><strong>امتیاز ویژه:</strong> ۳۰ امتیاز</p>
 <hr>
@@ -22,8 +22,8 @@
 <hr>
 <h2>۲. فناوری‌ها و الزامات فنی</h2>
 <p>برای ایجاد هماهنگی در پیاده‌سازی و ارزیابی پروژه، استفاده از فناوری‌های زیر پیشنهاد می‌شود.</p>
-<div class="table-wrap"><table><thead><tr><th scope="col">فناوری</th><th scope="col">وضعیت</th></tr></thead><tbody><tr><td>C#</td><td>الزامی</td></tr><tr><td>ASP.NET Core Web API</td><td>الزامی</td></tr><tr><td>Entity Framework Core</td><td>الزامی</td></tr><tr><td>SQL Server یا PostgreSQL</td><td>یکی الزامی</td></tr><tr><td>RESTful API</td><td>الزامی</td></tr><tr><td>JWT Authentication</td><td>پیشنهاد اصلی برای احراز هویت</td></tr><tr><td>OpenAPI / Swagger</td><td>الزامی</td></tr><tr><td>Git و GitHub</td><td>الزامی</td></tr><tr><td>Clean Architecture</td><td>امتیاز ویژه</td></tr><tr><td>CQRS</td><td>امتیاز ویژه</td></tr><tr><td>Unit / Integration Testing</td><td>امتیاز ویژه</td></tr><tr><td>Redis</td><td>اختیاری و امتیازی</td></tr><tr><td>Docker و CI/CD</td><td>اختیاری و امتیازی</td></tr></tbody></table></div>
-<p>استفاده از نسخه پایدار و پشتیبانی‌شده دات‌نت توصیه می‌شود.</p>
+<div class="table-wrap"><table><thead><tr><th scope="col">فناوری</th><th scope="col">وضعیت</th></tr></thead><tbody><tr><td>زبان و فریم‌ورک Backend</td><td>انتخاب تیم</td></tr><tr><td>پایگاه داده رابطه‌ای با پشتیبانی از تراکنش</td><td>الزامی</td></tr><tr><td>روش دسترسی به داده و ابزار مهاجرت دیتابیس</td><td>انتخاب تیم</td></tr><tr><td>RESTful API</td><td>الزامی</td></tr><tr><td>JWT Authentication</td><td>پیشنهاد اصلی برای احراز هویت</td></tr><tr><td>OpenAPI / Swagger</td><td>الزامی</td></tr><tr><td>Git و GitHub</td><td>الزامی</td></tr><tr><td>Clean Architecture</td><td>امتیاز ویژه</td></tr><tr><td>CQRS</td><td>امتیاز ویژه</td></tr><tr><td>Unit / Integration Testing</td><td>امتیاز ویژه</td></tr><tr><td>Redis</td><td>اختیاری و امتیازی</td></tr><tr><td>Docker و CI/CD</td><td>اختیاری و امتیازی</td></tr></tbody></table></div>
+<p>تیم‌ها در انتخاب زبان و فریم‌ورک آزادند و باید از نسخه پایدار و پشتیبانی‌شده ابزارهای انتخابی خود استفاده کنند.</p>
 <p>تیم‌ها می‌توانند از کتابخانه‌های معتبر موجود استفاده کنند؛ اما باید توانایی توضیح دلیل انتخاب و نحوه استفاده از آن‌ها را داشته باشند.</p>
 <hr>
 <h1>بخش اول: نیازمندی‌های اصلی محصول</h1>
@@ -223,7 +223,7 @@
 <h2>۱۱. طراحی و استانداردسازی API</h2>
 <p>تمام APIهای پروژه باید از الگوی RESTful پیروی کنند.</p>
 <h3>الزامات عمومی</h3>
-<ul><li>استفاده درست از HTTP Methodها</li><li>رعایت Status Codeهای استاندارد</li><li>اعتبارسنجی ورودی‌ها</li><li>استفاده از DTO</li><li>مدیریت خطاها</li><li>مستندسازی API</li><li>پیاده‌سازی Pagination برای فهرست‌ها</li><li>استفاده از CancellationToken در عملیات مناسب</li></ul>
+<ul><li>استفاده درست از HTTP Methodها</li><li>رعایت Status Codeهای استاندارد</li><li>اعتبارسنجی ورودی‌ها</li><li>استفاده از DTO</li><li>مدیریت خطاها</li><li>مستندسازی API</li><li>پیاده‌سازی Pagination برای فهرست‌ها</li><li>استفاده از سازوکار لغو درخواست در عملیات مناسب</li></ul>
 <h3>قرارداد Pagination</h3>
 <p>فهرست‌های اعضا، دارایی‌ها، بازارها و تراکنش‌ها باید از Pagination پشتیبانی کنند.</p>
 <p>پارامترهای پیشنهادی:</p>
@@ -261,13 +261,13 @@
 <p>۴. تراکنش ثبت می‌شود.</p>
 <p>۵. تغییرات ذخیره می‌شوند.</p>
 <p>اگر هر مرحله با خطا مواجه شود، نباید اطلاعات ناقص در دیتابیس باقی بماند.</p>
-<p>استفاده صحیح از قابلیت‌های Transaction در EF Core انتظار می‌رود.</p>
+<p>استفاده صحیح از تراکنش پایگاه داده در ابزار دسترسی به داده انتخابی تیم انتظار می‌رود.</p>
 <p><strong>نکته:</strong> تیم‌ها باید علاوه بر Atomicity، سناریوی دو درخواست برداشت هم‌زمان را نیز در نظر بگیرند. پیاده‌سازی پیشرفته کنترل Concurrency و Idempotency دارای امتیاز ویژه است.</p>
 <hr>
 <h1>بخش سوم: نقشه راه ۱۴ روزه</h1>
 <p>برنامه زیر یک مسیر پیشنهادی برای پیاده‌سازی است. تیم‌ها می‌توانند فعالیت‌های مستقل را به‌صورت موازی انجام دهند.</p>
 <h2>فاز اول ـ تحلیل و زیرساخت</h2>
-<div class="table-wrap"><table><thead><tr><th scope="col">روز</th><th scope="col">فعالیت</th><th scope="col">خروجی</th></tr></thead><tbody><tr><td>۱</td><td>تحلیل Figma، استخراج نیازمندی‌ها، توافق API با Frontend</td><td>فهرست قابلیت‌ها و قرارداد اولیه API</td></tr><tr><td>۲</td><td>ایجاد Solution، طراحی دیتابیس، Migration اولیه</td><td>پروژه قابل اجرا و دیتابیس آماده</td></tr><tr><td>۳</td><td>پیاده‌سازی Register، Login و Authentication</td><td>سیستم احراز هویت قابل تست</td></tr></tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th scope="col">روز</th><th scope="col">فعالیت</th><th scope="col">خروجی</th></tr></thead><tbody><tr><td>۱</td><td>تحلیل Figma، استخراج نیازمندی‌ها، توافق API با Frontend</td><td>فهرست قابلیت‌ها و قرارداد اولیه API</td></tr><tr><td>۲</td><td>ایجاد ساختار پروژه، طراحی دیتابیس، Migration اولیه</td><td>پروژه قابل اجرا و دیتابیس آماده</td></tr><tr><td>۳</td><td>پیاده‌سازی Register، Login و Authentication</td><td>سیستم احراز هویت قابل تست</td></tr></tbody></table></div>
 <h2>فاز دوم ـ قابلیت‌های اصلی</h2>
 <div class="table-wrap"><table><thead><tr><th scope="col">روز</th><th scope="col">فعالیت</th><th scope="col">خروجی</th></tr></thead><tbody><tr><td>۴</td><td>پیاده‌سازی Workspace، اعضا و Roleها</td><td>مدیریت اعضا و سطح دسترسی</td></tr><tr><td>۵</td><td>پیاده‌سازی بازار رمزارزها و داده‌های نمونه</td><td>Market API و تاریخچه قیمت</td></tr><tr><td>۶</td><td>پیاده‌سازی سبد دارایی و محاسبات</td><td>Holding و Portfolio API</td></tr><tr><td>۷</td><td>پیاده‌سازی عملیات تراکنش</td><td>ثبت Deposit، Buy، Sell و Withdrawal</td></tr><tr><td>۸</td><td>تکمیل تراکنش‌ها، اعتبارسنجی و فیلترها</td><td>تاریخچه قابل جست‌وجو و کنترل موجودی</td></tr><tr><td>۹</td><td>پیاده‌سازی داشبورد و گزارش‌های محاسباتی</td><td>Dashboard API</td></tr><tr><td>۱۰</td><td>تنظیمات کاربران و تکمیل قابلیت‌های ناقص</td><td>تکمیل MVP</td></tr></tbody></table></div>
 <h2>فاز سوم ـ یکپارچه‌سازی و تحویل</h2>
@@ -288,7 +288,7 @@
 <p>ساختار پیشنهادی:</p>
 <ul><li><code dir="ltr">Domain</code></li><li><code dir="ltr">Application</code></li><li><code dir="ltr">Infrastructure</code></li><li><code dir="ltr">Presentation / API</code></li></ul>
 <h3>معیارهای ارزیابی</h3>
-<ul><li>رعایت Dependency Rule</li><li>مستقل بودن Domain از Infrastructure</li><li>جداسازی Business Logic از Controller</li><li>استفاده صحیح از Dependency Injection</li><li>مشخص بودن مسئولیت کلاس‌ها و سرویس‌ها</li><li>پرهیز از وابستگی مستقیم Application به EF Core یا Controller</li></ul>
+<ul><li>رعایت Dependency Rule</li><li>مستقل بودن Domain از Infrastructure</li><li>جداسازی Business Logic از Controller</li><li>استفاده صحیح از Dependency Injection</li><li>مشخص بودن مسئولیت کلاس‌ها و سرویس‌ها</li><li>پرهیز از وابستگی مستقیم لایه کاربرد به ابزار دسترسی به داده یا لایه HTTP</li></ul>
 <p><strong>نکته:</strong> صرفاً ایجاد چهار پروژه با نام‌های بالا به معنی پیاده‌سازی Clean Architecture نیست.</p>
 <p>تیم باید بتواند توضیح دهد چرا هر بخش در لایه مربوط به خودش قرار گرفته است.</p>
 <hr>
@@ -301,7 +301,7 @@
 <ul><li><code dir="ltr">CreateTransactionCommand</code></li><li><code dir="ltr">AddHoldingCommand</code></li><li><code dir="ltr">InviteMemberCommand</code></li></ul>
 <h3>معیارهای ارزیابی</h3>
 <ul><li>جداسازی منطقی Command و Query</li><li>مسئولیت مشخص Handlerها</li><li>عدم قرارگیری Business Logic در Controller</li><li>امکان تست مستقل عملیات</li><li>استفاده صحیح از DTO و مدل‌های ورودی و خروجی</li></ul>
-<p>استفاده از MediatR یا کتابخانه مشابه مجاز است، اما الزامی نیست.</p>
+<p>استفاده از ابزار تفکیک عملیات خواندن و نوشتن اختیاری است و انتخاب آن با تیم است.</p>
 <p><strong>هدف، درک و پیاده‌سازی CQRS است؛ نه صرفاً اضافه کردن یک کتابخانه به پروژه.</strong></p>
 <p>استفاده از دیتابیس جداگانه برای Read و Write الزامی نیست.</p>
 <hr>
@@ -309,13 +309,13 @@
 <p>تیم‌ها می‌توانند برای قوانین مهم تجاری تست خودکار بنویسند.</p>
 <p>سناریوهای پیشنهادی:</p>
 <ul><li>ثبت‌نام با ایمیل تکراری رد شود.</li><li>کاربر بدون مجوز نتواند عضو جدید دعوت کند.</li><li>برداشت بیشتر از موجودی رد شود.</li><li>تراکنش موفق موجودی را به‌درستی تغییر دهد.</li><li>موجودی هیچ‌وقت منفی نشود.</li><li>کاربر نتواند تراکنش Workspace دیگر را مشاهده کند.</li><li>ارزش سبد به‌درستی محاسبه شود.</li><li>ثبت تراکنش ناموفق موجودی را تغییر ندهد.</li></ul>
-<p>استفاده از xUnit، NUnit یا MSTest قابل قبول است.</p>
+<p>استفاده از ابزار تست مناسب زبان و فریم‌ورک انتخابی تیم قابل قبول است.</p>
 <p>تست‌ها باید رفتار واقعی سیستم را بررسی کنند و صرفاً برای افزایش تعداد تست نوشته نشده باشند.</p>
 <hr>
 <h2>۱۸. اتصال به اطلاعات واقعی بازار ـ ۴ امتیاز</h2>
 <p>تیم‌هایی که از داده‌های واقعی بازار استفاده کنند، امتیاز بیشتری دریافت می‌کنند.</p>
 <p>موارد قابل ارزیابی:</p>
-<ul><li>استفاده از HttpClient به‌شکل صحیح</li><li>ذخیره قیمت‌های دریافت‌شده</li><li>به‌روزرسانی دوره‌ای با BackgroundService</li><li>مدیریت Timeout و خطاهای سرویس خارجی</li><li>استفاده از آخرین قیمت ذخیره‌شده هنگام قطعی سرویس</li><li>استفاده مناسب از Cache برای کاهش درخواست‌های تکراری</li></ul>
+<ul><li>استفاده صحیح از کلاینت HTTP مناسب زبان انتخابی</li><li>ذخیره قیمت‌های دریافت‌شده</li><li>به‌روزرسانی دوره‌ای با پردازش پس‌زمینه یا زمان‌بند</li><li>مدیریت Timeout و خطاهای سرویس خارجی</li><li>استفاده از آخرین قیمت ذخیره‌شده هنگام قطعی سرویس</li><li>استفاده مناسب از Cache برای کاهش درخواست‌های تکراری</li></ul>
 <p>Redis اختیاری است و استفاده صحیح از آن می‌تواند در ارزیابی این بخش مؤثر باشد.</p>
 <hr>
 <h2>۱۹. Concurrency و Idempotency ـ ۳ امتیاز</h2>
@@ -384,7 +384,7 @@
 <p>۲. تنظیمات اتصال به دیتابیس چیست؟</p>
 <p>۳. Migrationها چگونه اعمال می‌شوند؟</p>
 <p>۴. داده‌های آزمایشی چگونه ایجاد می‌شوند؟</p>
-<p>۵. ساختار اصلی Solution چگونه است؟</p>
+<p>۵. ساختار اصلی پروژه چگونه است؟</p>
 <p>۶. کدام قابلیت‌ها پیاده‌سازی شده‌اند؟</p>
 <p>۷. چه محدودیت‌هایی در نسخه فعلی وجود دارد؟</p>
 <hr>
