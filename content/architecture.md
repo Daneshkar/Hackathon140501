@@ -2,7 +2,7 @@
 
 ## مدل داده و قیود
 
-- User: ایمیل و موبایل نرمال‌شده یکتا، PasswordHash با ASP.NET Core Identity یا ابزار استاندارد؛ هرگز الگوریتم هش دست‌ساز نسازید.
+- User: ایمیل و موبایل نرمال‌شده یکتا، PasswordHash با ابزار استاندارد هش رمز عبور؛ هرگز الگوریتم هش دست‌ساز نسازید.
 - WorkspaceMember: زوج WorkspaceId و UserId یکتا، Role و Status؛ حذف عضویت نباید Transaction را cascade delete کند.
 - Invitation: workspaceId، email نرمال‌شده، role، tokenHash یکتا، expiresAt، consumedAt؛ مصرف همراه ایجاد عضویت در transaction دیتابیس.
 - Asset: symbol یکتا؛ AssetPriceSnapshot: assetId و observedAt با index؛ داده نمونه با منشأ مشخص.
@@ -18,7 +18,7 @@
 
 ## معماری متناسب با زمان
 
-یک معماری لایه‌ای ساده با Controllerهای کوچک و سرویس قابل تست برای تکمیل MVP کافی است. در مسیر ویژه، Domain مستقل، Application شامل use case و interface، Infrastructure شامل EF و سرویس خارجی، API شامل endpointها باشد. نام پوشه‌ها معیار کافی نیست. CQRS جداسازی Command و Query است و الزام دیتابیس دوم یا MediatR ندارد.
+یک معماری لایه‌ای ساده با Controllerهای کوچک و سرویس قابل تست برای تکمیل MVP کافی است. در مسیر ویژه، Domain مستقل، Application شامل use case و interface، Infrastructure شامل دسترسی به داده و سرویس خارجی، API شامل endpointها باشد. نام پوشه‌ها معیار کافی نیست. CQRS جداسازی Command و Query است و الزام دیتابیس دوم یا کتابخانه مشخص ندارد.
 
 ## Seed قابل تکرار
 
@@ -26,8 +26,8 @@ Seed باید صریحاً برای Development فعال شود؛ روی دیت�
 
 ## ملاحظات امنیتی اجرایی
 
-Issuer و Audience و lifetime و امضای JWT بررسی شوند. secret با متغیر محیطی یا User Secrets تأمین شود. HTTPS، CORS محدود به مبدأ Frontend و log بدون token و password استفاده شود. عضویت فعال را در هر درخواست کنترل کنید تا غیرفعال‌سازی در طول عمر JWT هم مؤثر باشد. DTO خروجی از entity دیتابیس جدا باشد. نرخ ورود محدود و خطای ورود عمومی باشد.
+Issuer و Audience و lifetime و امضای JWT بررسی شوند. secret با متغیر محیطی یا ابزار مدیریت امن اسرار تأمین شود. HTTPS، CORS محدود به مبدأ Frontend و log بدون token و password استفاده شود. عضویت فعال را در هر درخواست کنترل کنید تا غیرفعال‌سازی در طول عمر JWT هم مؤثر باشد. DTO خروجی از entity دیتابیس جدا باشد. نرخ ورود محدود و خطای ورود عمومی باشد.
 
 ## داده بازار اختیاری
 
-MVP از دیتابیس Seed می‌خواند. اتصال خارجی ویژه با HttpClient، timeout، cancellation، retry محدود با رعایت Retry-After، ذخیره آخرین قیمت و زمان freshness پیاده شود. در قطعی، آخرین داده ذخیره‌شده همراه observedAt بازگردد؛ داده کهنه را زنده معرفی نکنید. Redis اختیاری است.
+MVP از دیتابیس Seed می‌خواند. اتصال خارجی ویژه با کلاینت HTTP، timeout و لغو درخواست، retry محدود با رعایت Retry-After، ذخیره آخرین قیمت و زمان freshness پیاده شود. در قطعی، آخرین داده ذخیره‌شده همراه observedAt بازگردد؛ داده کهنه را زنده معرفی نکنید. Redis اختیاری است.
