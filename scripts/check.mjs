@@ -25,4 +25,4 @@ const scores=JSON.parse(await readFile(new URL('../content/scoring.json',import.
 const references=JSON.parse(await readFile(new URL('../content/design-references.json',import.meta.url),'utf8'));
 assert.equal(references.length,7);
 for(const group of references){assert(group.length>0);for(const design of group){assert(design.image.startsWith('assets/designs/'));assert((await stat(path.join(root,design.image))).size>0);assert(design.width>0&&design.height>0);}}
-console.log(`PASS: 9 RTL pages; ${links} local links; ${operations} API operations; 14 days; 100+30 points.`);
+console.log(`PASS: ${files.filter(file=>file.endsWith('.html')).length} RTL pages; ${links} local links; ${operations} API operations; 14 days; 100+30 backend points.`);

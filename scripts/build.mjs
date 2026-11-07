@@ -6,7 +6,7 @@ const write = (p,v) => writeFile(new URL('../'+p,import.meta.url),v);
 await mkdir(new URL('../docs/api/',import.meta.url),{recursive:true});
 await mkdir(new URL('../docs/assets/',import.meta.url),{recursive:true});
 const roadmap=JSON.parse(await read('content/roadmap.json')); const scores=JSON.parse(await read('content/scoring.json'));
-const pages=[['scenario','سناریوی کامل'],['api','قرارداد API'],['architecture','طراحی Backend'],['acceptance','معیارهای پذیرش'],['scoring','امتیازدهی'],['teamwork','همکاری تیمی'],['submission','تحویل نهایی'],['resources','منابع و پرسش‌ها']];
+const pages=[['scenario','سناریوی کامل'],['api','قرارداد API'],['architecture','طراحی Backend'],['acceptance','معیارهای پذیرش'],['scoring','امتیازدهی Backend'],['teamwork','همکاری تیمی'],['submission','تحویل نهایی'],['resources','منابع و پرسش‌ها']];
 const nav = current => `<a class="brand" href="index.html" aria-label="دانشکار؛ صفحه اصلی"><span class="brand-icon">د</span> دانشکار <span class="edition">هکاتون ۱۴۰۵</span></a><nav aria-label="ناوبری اصلی"><a href="index.html" ${current==='index'?'aria-current="page"':''}>نقشهٔ سفر</a><a href="scenario.html" ${current==='scenario'?'aria-current="page"':''}>سناریو</a><a href="api.html" ${current==='api'?'aria-current="page"':''}>API</a><a href="scoring.html" ${current==='scoring'?'aria-current="page"':''}>ارزیابی</a><a href="resources.html" ${current==='resources'?'aria-current="page"':''}>منابع</a></nav>`;
 const shell=(id,title,body)=>`<!doctype html>
 <html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="مرجع فارسی شرکت‌کنندگان هکاتون دانشکار؛ سناریوی مدیریت دارایی دیجیتال، نقشه چهارده‌روزه، قرارداد API و معیارهای پذیرش"><meta name="theme-color" content="#101e29"><title>${e(title)} | هکاتون دانشکار</title><link rel="stylesheet" href="assets/style.css"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml">${id==='index'?'<script src="assets/app.js" defer></script>':''}</head><body><a class="skip" href="#main">رفتن به محتوای اصلی</a><header class="site-header"><div class="header-inner">${nav(id)}</div></header><main id="main">${body}</main><footer><div><strong>دانشکار · از ایده تا محصول</strong><p>۱۴ روز برای تجربهٔ ساختن در یک تیم واقعی.</p></div><a href="https://github.com/Daneshkar/Hackathon140501">ریپوزیتوری و مشارکت ↗</a><span>سناریوی آموزشی · عملیات مالی شبیه‌سازی‌شده</span></footer></body></html>`;
@@ -20,6 +20,7 @@ await write('docs/index.html',shell('index','نقشهٔ سفر',`
 <section class="library"><div class="section-heading"><div><span class="section-number">۰۳ / کوله‌پشتی شما</span><h2>هرآنچه برای سفر لازم دارید.</h2></div><p>مرجع مطالعه، توافق تیمی و آماده‌شدن برای داوری.</p></div><div class="library-grid">${library}</div></section><section class="closing"><span class="section-number">کیفیت، پیش از پیچیدگی</span><h2>اول درست کار کند.<br>بعد، بهترش کنید.</h2><p>قابلیت‌های اصلی را کامل کنید؛ معماری و ابزارهای پیشرفته فرصت امتیاز بیشترند.</p><a class="button primary" href="acceptance.html">چک‌لیست پذیرش ←</a></section>
 <dialog id="quest-dialog" aria-labelledby="quest-title"><button id="close-dialog" class="close-dialog" aria-label="بستن مأموریت">×</button><p id="quest-region" class="eyebrow"></p><h2 id="quest-title"></h2><p id="quest-mission"></p><h3>کارهای امروز</h3><ul id="quest-tasks"></ul><div class="deliverable"><span>خروجی قابل تحویل</span><strong id="quest-deliverable"></strong></div><a id="quest-resource" href="scenario.html">مطالعهٔ راهنمای این مرحله ↖</a><label class="complete-control"><input id="quest-complete" type="checkbox"> مأموریت این روز را انجام داده‌ام</label></dialog>
 <script id="roadmap-data" type="application/json">${JSON.stringify(roadmap).replace(/</g,'\\u003c')}</script>`));
+pages.push(['frontend','راهنمای فرانت‌اند']);
 for(const [id,title] of pages){
   let body;
   if(id==='scoring'){
@@ -27,11 +28,19 @@ for(const [id,title] of pages){
     body=`<h1>امتیازدهی ۱۰۰ + ۳۰</h1><p>وزن‌ها عین سناریوی ارسالی برگزارکننده‌اند. جزئیات Clean Architecture و CQRS و سایر امتیازهای ویژه در بخش چهارم سناریو آمده است.</p>${section('base','قابلیت‌های اصلی — ۱۰۰ امتیاز')}${section('bonus','قابلیت‌های ویژه — ۳۰ امتیاز')}<h2>راهنمای ثبت شواهد</h2><p>برای هر ردیف، مسیر اجرا، پاسخ API، تست و commit را نشان دهید. قابلیت ناقص را شفاف اعلام کنید. روش پیشنهادی ارزیابی: صفر برای رفتار غایب، بخشی از وزن برای رفتار ناقص و کل وزن برای رفتار کامل با شواهد. این پیشنهاد جای سیاست نهایی داوران را نمی‌گیرد و شرط حذف یا جریمه اعلام‌نشده ایجاد نمی‌کند.</p><a href="acceptance.html">معیارهای پذیرش را بررسی کنید ←</a>`;
   }else body=markdown(await read(id==='scenario'?'scenario-source.md':`content/${id}.md`));
   if(id==='api')body+='<p><a class="button primary" href="api/openapi.json" download>دریافت قرارداد OpenAPI 3.1</a></p>';
+  if(id==='frontend'){
+    const actions=`<div class="frontend-actions">
+      <a class="button primary" href="assets/frontend-evaluation-guide.pdf" download>دانلود دفترچهٔ اصلی (PDF)</a>
+      <a class="button" href="https://www.figma.com/design/FB8p3t10nYItsCZtys3tG5/Daneshkar-Hackaton">فایل کامل فیگما ↗</a>
+      <a class="button" href="api.html">قرارداد API</a>
+    </div>`;
+    body=body.replace('</h1>',`</h1>${actions}`);
+  }
   const side=`<aside class="doc-sidebar" aria-label="کتابخانه راهنما"><a href="index.html#adventure">← بازگشت به نقشه</a>${pages.map(([p,t])=>`<a href="${p}.html" ${p===id?'aria-current="page"':''}>${t}</a>`).join('')}<a href="api/openapi.json">OpenAPI JSON ↗</a></aside>`;
   await write(`docs/${id}.html`,shell(id,title,`<div class="doc-layout">${side}<article class="document">${body}</article></div>`));
 }
 await write('docs/api/openapi.json',JSON.stringify(contract(),null,2)+'\n');
 await write('docs/.nojekyll','');
-console.log('Built 9 RTL pages and OpenAPI contract.');
+console.log(`Built ${pages.length+1} RTL pages and OpenAPI contract.`);
 
 await import('./kingdom.mjs');
